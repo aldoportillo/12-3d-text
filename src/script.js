@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import GUI from 'lil-gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
+import {RGBELoader} from 'three/examples/jsm/loaders/RGBELoader'
+
 /**
  * Base
  */
@@ -18,6 +20,21 @@ const scene = new THREE.Scene()
 // const axesHelper = new THREE.AxesHelper()
 // scene.add(axesHelper)
 
+/**
+ * Environment Map
+ */
+
+const rgbeLoader = new RGBELoader()
+
+rgbeLoader.load('./textures/environmentMap/4k.hdr', (environmentMap) => {
+    environmentMap.mapping = THREE.EquirectangularReflectionMapping
+
+    
+    scene.background = environmentMap
+    scene.environment = environmentMap
+})
+
+console.log(rgbeLoader)
 /**
  * Textures
  */

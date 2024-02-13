@@ -51,7 +51,7 @@ const fontLoader = new FontLoader()
 
 
 fontLoader.load('fonts/helvetiker_regular.typeface.json', (font) => {
-    const textGeometry = new TextGeometry(
+    const header = new TextGeometry(
         'Aldo Portillo',
         {
             font: font,
@@ -66,19 +66,36 @@ fontLoader.load('fonts/helvetiker_regular.typeface.json', (font) => {
         }
     )
 
-    // textGeometry.computeBoundingBox()
-    // console.log(textGeometry.boundingBox)
-    // textGeometry.translate(
-    //     - (textGeometry.boundingBox.max.x - 0.02) * 0.5, // Subtract bevel size
-    //     - (textGeometry.boundingBox.max.y - 0.02) * 0.5, // Subtract bevel size
-    //     - (textGeometry.boundingBox.max.z - 0.03) * 0.5  // Subtract bevel thickness
+    const subHeader = new TextGeometry(
+        'Portfolio 3.0 Coming Soon',
+        {
+            font: font,
+            size: 0.2,
+            height: 0.2,
+            curveSegments: 5, //Controls triangles around curves
+            bevelEnabled: true,
+            bevelThickness: 0.03,
+            bevelSize: 0.02,
+            bevelOffset: 0,
+            bevelSegments: 4, //controls triangles between edges
+        }
+    )
 
-    // )
+    subHeader.computeBoundingBox()
+    //console.log(subHeader.boundingBox)
+    subHeader.translate(
+        - (subHeader.boundingBox.max.x - 0.02) * 0.5, // Subtract bevel size
+        - (subHeader.boundingBox.max.y - 0.02) * 0.5 - 0.5, // Subtract bevel size
+        - (subHeader.boundingBox.max.z - 0.03) * 0.5  // Subtract bevel thickness
 
-    textGeometry.center()
+    )
+
+    header.center()
     const material = new THREE.MeshMatcapMaterial()
     material.matcap = matcapTexture
-    const text = new THREE.Mesh(textGeometry, material)
+    const text = new THREE.Mesh(header, material)
+    const subText = new THREE.Mesh(subHeader, material)
+    scene.add(subText)
     scene.add(text)
 
     const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45)

@@ -9,7 +9,7 @@ import {RGBELoader} from 'three/examples/jsm/loaders/RGBELoader'
  * Base
  */
 // Debug
-const gui = new GUI()
+// const gui = new GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -163,9 +163,9 @@ camera.position.y = 0
 camera.position.z = 5
 scene.add(camera)
 
-gui.add(camera.position, "x").min(-10).max(10).step(0.01)
-gui.add(camera.position, "y").min(-10).max(10).step(0.01)
-gui.add(camera.position, "z").min(-10).max(10).step(0.01)
+// gui.add(camera.position, "x").min(-10).max(10).step(0.01)
+// gui.add(camera.position, "y").min(-10).max(10).step(0.01)
+// gui.add(camera.position, "z").min(-10).max(10).step(0.01)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)

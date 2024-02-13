@@ -26,7 +26,7 @@ const scene = new THREE.Scene()
 
 const rgbeLoader = new RGBELoader()
 
-rgbeLoader.load('./textures/environmentMap/4k.hdr', (environmentMap) => {
+rgbeLoader.load('./textures/environmentMap/2k.pic', (environmentMap) => {
     environmentMap.mapping = THREE.EquirectangularReflectionMapping
 
     
@@ -145,6 +145,10 @@ camera.position.x = 1
 camera.position.y = 1
 camera.position.z = 2
 scene.add(camera)
+
+gui.add(camera.position, "x").min(-10).max(10).step(0.01)
+gui.add(camera.position, "y").min(-10).max(10).step(0.01)
+gui.add(camera.position, "z").min(-10).max(10).step(0.01)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
